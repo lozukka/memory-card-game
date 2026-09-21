@@ -11,7 +11,7 @@ export async function fetchImages(imgId) {
 
     const result = await response.json();
     console.log(result); //removing this when everything is done correctly
-    const image = result.sprites.front_default;
+    const image = result.sprites.other["official-artwork"].front_default;
     return image;
   } catch (error) {
     console.error(error.message);
