@@ -18,8 +18,8 @@ function Game() {
     loadPokemon();
   }, []);
 
-  function handleCardClick() {
-    console.log("clicked!");
+  function handleCardClick(id) {
+    console.log(id);
   }
   return (
     <>
