@@ -1,7 +1,7 @@
 const imageFetchUrl = `https://pokeapi.co/api/v2/pokemon/`;
 
-export async function fetchImages(imgId) {
-  const url = `${imageFetchUrl}${imgId}`;
+export async function fetchImages(id) {
+  const url = `${imageFetchUrl}${id}`;
 
   try {
     const response = await fetch(url);
@@ -12,15 +12,10 @@ export async function fetchImages(imgId) {
     const result = await response.json();
     console.log(result); //removing this when everything is done correctly
     const image = result.sprites.other["official-artwork"].front_default;
-    return image;
+    const alt = result.name;
+    return { id: result.id, image, alt };
   } catch (error) {
     console.error(error.message);
+    return { id: null, image: null, alt: null };
   }
 }
-
-// fetch("https://pokeapi.co/api/v2/pokemon/100")
-//      .then((response) => response.json())
-//      .then((data) => {
-//        setImage(data.sprites.front_default);
-//        console.log(data.name);
-//      });

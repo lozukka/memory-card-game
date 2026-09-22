@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "./api/items";
 import "./App.css";
-import Card from "./components/Card";
+import Game from "./components/Game";
 
 function App() {
   const [image, setImage] = useState(null);
 
   return (
     <>
-      <Card image={image} setImage={setImage} />
+      <Game image={image} setImage={setImage} />
     </>
   );
 }
