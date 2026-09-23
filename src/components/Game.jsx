@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { fetchImages } from "../utils/fetchImages";
+import { sufflePokemon } from "../utils/suffleImages";
 import Card from "./Card";
 import Score from "./Score";
-import { fetchImages } from "../api/items";
 import "../styles/game.css";
 
 function Game() {
@@ -41,15 +42,6 @@ function Game() {
     setClickedIds(new Set());
     setGameOver(false);
     loadPokemon();
-  }
-
-  function sufflePokemon(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
   }
 
   return (
