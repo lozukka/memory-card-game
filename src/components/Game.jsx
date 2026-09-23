@@ -32,6 +32,7 @@ function Game() {
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
       setScore((prev) => prev + 1);
+      setPokemonList((prev) => sufflePokemon(prev));
     }
   }
 
@@ -40,6 +41,15 @@ function Game() {
     setClickedIds(new Set());
     setGameOver(false);
     loadPokemon();
+  }
+
+  function sufflePokemon(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
   }
 
   return (
