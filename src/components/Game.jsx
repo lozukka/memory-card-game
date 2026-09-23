@@ -12,9 +12,10 @@ function Game() {
   const [bestScore, setBestScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
+  const POKEMON_IDS = [1, 4, 7, 25, 39, 54, 104, 129, 133, 143];
+
   const loadPokemon = async () => {
-    const ids = [1, 4, 7, 25, 39, 54, 104, 129, 133, 143];
-    const results = await Promise.all(ids.map((id) => fetchImages(id)));
+    const results = await Promise.all(POKEMON_IDS.map((id) => fetchImages(id)));
     setPokemonList(results);
   };
 
@@ -48,26 +49,27 @@ function Game() {
     <>
       <div id="scorearea">
         <Score score={score} bestScore={bestScore} />
-        <button
-          id="playAgainBtn"
-          type="button"
-          onClick={playAgain}
-          className={gameOver ? "" : "hidden"}
-        >
-          Play again
-        </button>
+        {gameOver && (
+          <button id="playAgainBtn" type="button" onClick={playAgain}>
+            Play again
+          </button>
+        )}
       </div>
 
-      <div id="gamearea">
-        {pokemonList.map((pokemon) => (
-          <Card
-            key={pokemon.id}
-            {...pokemon}
-            onCardClick={handleCardClick}
-            disabled={gameOver}
-          />
-        ))}
-      </div>
+      {pokemonList.length === 0 ? (
+        <p>Loading Pokemon...</p>
+      ) : (
+        <div id="gamearea">
+          {pokemonList.map((pokemon) => (
+            <Card
+              key={pokemon.id}
+              {...pokemon}
+              onCardClick={handleCardClick}
+              disabled={gameOver}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 }
