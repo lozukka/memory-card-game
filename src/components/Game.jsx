@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchImages } from "../utils/fetchImages";
-import { sufflePokemon } from "../utils/suffleImages";
+import { shufflePokemon } from "../utils/shuffleImages";
 import Card from "./Card";
 import Score from "./Score";
 import "../styles/game.css";
@@ -33,7 +33,7 @@ function Game() {
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
       setScore((prev) => prev + 1);
-      setPokemonList((prev) => sufflePokemon(prev));
+      setPokemonList((prev) => shufflePokemon(prev));
     }
   }
 
