@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
+import Score from "./Score";
 import { fetchImages } from "../api/items";
 import "../styles/game.css";
 
@@ -24,6 +25,7 @@ function Game() {
   }
   return (
     <>
+      <Score />
       <div id="gamearea">
         {pokemonList.map((pokemon) => (
           <Card key={pokemon.id} {...pokemon} onCardClick={handleCardClick} />
