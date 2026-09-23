@@ -1,7 +1,14 @@
 function Card({ id, image, alt, onCardClick }) {
   return (
     <>
-      <img src={image} alt={alt} height={200} onClick={() => onCardClick(id)} />
+      <div className="card">
+        <img
+          src={image}
+          alt={alt}
+          height={200}
+          onClick={() => onCardClick(id)}
+        />
+      </div>
     </>
   );
 }
