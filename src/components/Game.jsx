@@ -21,11 +21,12 @@ function Game() {
   }, []);
 
   function handleCardClick(id) {
+    setScore(score + 1);
     console.log(id);
   }
   return (
     <>
-      <Score />
+      <Score score={score} />
       <div id="gamearea">
         {pokemonList.map((pokemon) => (
           <Card key={pokemon.id} {...pokemon} onCardClick={handleCardClick} />

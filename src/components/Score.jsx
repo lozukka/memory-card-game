@@ -1,7 +1,7 @@
-function Score() {
+function Score({ score }) {
   return (
     <>
-      <h2>Your score is:</h2>
+      <h2>Your score is: {score}</h2>
     </>
   );
 }
