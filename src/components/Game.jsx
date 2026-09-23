@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
 import { fetchImages } from "../api/items";
+import "../styles/game.css";
 
 function Game() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -23,9 +24,11 @@ function Game() {
   }
   return (
     <>
-      {pokemonList.map((pokemon) => (
-        <Card key={pokemon.id} {...pokemon} onCardClick={handleCardClick} />
-      ))}
+      <div id="gamearea">
+        {pokemonList.map((pokemon) => (
+          <Card key={pokemon.id} {...pokemon} onCardClick={handleCardClick} />
+        ))}
+      </div>
     </>
   );
 }
