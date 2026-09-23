@@ -21,8 +21,14 @@ function Game() {
   }, []);
 
   function handleCardClick(id) {
-    setScore(score + 1);
-    console.log(id);
+    if (clickedIds.has(id)) {
+      //game over function
+      console.log("game over");
+    } else {
+      setClickedIds((prev) => new Set(prev).add(id));
+      setScore((prev) => prev + 1);
+      console.log({ clickedIds });
+    }
   }
   return (
     <>
