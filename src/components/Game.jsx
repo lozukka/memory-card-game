@@ -24,15 +24,34 @@ function Game() {
     if (clickedIds.has(id)) {
       //game over function
       console.log("game over");
+      if (score > bestScore) {
+        setBestScore(score);
+      }
+      document.getElementById("playAgainBtn").classList.remove("hidden");
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
       setScore((prev) => prev + 1);
       console.log({ clickedIds });
     }
   }
+  function playAgain() {
+    console.log("play again");
+  }
+
   return (
     <>
-      <Score score={score} />
+      <div id="scorearea">
+        <Score score={score} bestScore={bestScore} />
+        <button
+          id="playAgainBtn"
+          type="button"
+          onClick={playAgain}
+          className="hidden"
+        >
+          Play again
+        </button>
+      </div>
+
       <div id="gamearea">
         {pokemonList.map((pokemon) => (
           <Card key={pokemon.id} {...pokemon} onCardClick={handleCardClick} />
