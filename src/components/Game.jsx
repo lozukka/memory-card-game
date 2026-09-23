@@ -9,33 +9,37 @@ function Game() {
   const [clickedIds, setClickedIds] = useState(new Set());
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+
+  const loadPokemon = async () => {
+    const ids = [1, 4, 7, 25, 39, 54, 104, 129, 133, 143];
+    const results = await Promise.all(ids.map((id) => fetchImages(id)));
+    setPokemonList(results);
+  };
 
   useEffect(() => {
-    const loadPokemon = async () => {
-      const ids = [1, 4, 7, 25, 39, 54, 104, 129, 133, 143];
-      const results = await Promise.all(ids.map((id) => fetchImages(id)));
-      setPokemonList(results);
-    };
-
     loadPokemon();
   }, []);
 
   function handleCardClick(id) {
+    if (gameOver) return;
+
     if (clickedIds.has(id)) {
-      //game over function
-      console.log("game over");
       if (score > bestScore) {
         setBestScore(score);
       }
-      document.getElementById("playAgainBtn").classList.remove("hidden");
+      setGameOver(true);
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
       setScore((prev) => prev + 1);
-      console.log({ clickedIds });
     }
   }
+
   function playAgain() {
-    console.log("play again");
+    setScore(0);
+    setClickedIds(new Set());
+    setGameOver(false);
+    loadPokemon();
   }
 
   return (
@@ -46,7 +50,7 @@ function Game() {
           id="playAgainBtn"
           type="button"
           onClick={playAgain}
-          className="hidden"
+          className={gameOver ? "" : "hidden"}
         >
           Play again
         </button>
@@ -54,7 +58,12 @@ function Game() {
 
       <div id="gamearea">
         {pokemonList.map((pokemon) => (
-          <Card key={pokemon.id} {...pokemon} onCardClick={handleCardClick} />
+          <Card
+            key={pokemon.id}
+            {...pokemon}
+            onCardClick={handleCardClick}
+            disabled={gameOver}
+          />
         ))}
       </div>
     </>
