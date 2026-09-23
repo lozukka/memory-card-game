@@ -4,7 +4,13 @@ import Game from "./components/Game";
 function App() {
   return (
     <>
-      <Game />
+      <header>
+        <h1>Memory Card Game</h1>
+        <p>Click the pictures. If you have already clicked it, game over.</p>
+      </header>
+      <main>
+        <Game />
+      </main>
     </>
   );
 }

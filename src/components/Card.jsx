@@ -10,6 +10,7 @@ function Card({ id, image, alt, onCardClick }) {
           height={200}
           onClick={() => onCardClick(id)}
         />
+        <h3>{alt}</h3>
       </div>
     </>
   );
