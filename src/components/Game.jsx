@@ -39,9 +39,17 @@ function Game() {
       }
       setGameOver(true);
     } else {
-      setClickedIds((prev) => new Set(prev).add(id));
+      const updatedClickedIds = new Set(clickedIds).add(id);
+      setClickedIds(updatedClickedIds);
       setScore((prev) => prev + 1);
-      setPokemonList((prev) => shufflePokemon(prev));
+
+      if (updatedClickedIds.size === pokemonList.length) {
+        // board cleared — load a fresh set
+        setClickedIds(new Set());
+        loadPokemon();
+      } else {
+        setPokemonList((prev) => shufflePokemon(prev));
+      }
     }
   }
 
