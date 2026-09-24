@@ -11,7 +11,7 @@ function Card({ id, image, alt, onCardClick, disabled }) {
           className={disabled ? "disabled" : ""}
           onClick={() => !disabled && onCardClick(id)}
         />
-        <h3>{alt}</h3>
+        <h3 className={disabled ? "disabled" : ""}>{alt}</h3>
       </div>
     </>
   );
