@@ -7,7 +7,7 @@ function Card({ id, image, alt, onCardClick, disabled }) {
         <img
           src={image}
           alt={alt}
-          height={200}
+          height={180}
           className={disabled ? "disabled" : ""}
           onClick={() => !disabled && onCardClick(id)}
         />
