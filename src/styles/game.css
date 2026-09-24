@@ -1,5 +1,9 @@
 #gamearea {
-  width: 80%;
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
 }
 .hidden {
   display: none;

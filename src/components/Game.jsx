@@ -12,7 +12,7 @@ function Game() {
   const [bestScore, setBestScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
-  const POKEMON_IDS = [1, 4, 7, 25, 39, 54, 104, 129, 133, 143];
+  const POKEMON_IDS = [1, 4, 7, 12, 25, 39, 54, 60, 104, 129, 133, 143];
 
   const loadPokemon = async () => {
     const results = await Promise.all(POKEMON_IDS.map((id) => fetchImages(id)));
