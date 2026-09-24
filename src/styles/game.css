@@ -1,5 +1,4 @@
 #gamearea {
-  width: 60%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -16,6 +15,26 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
   }
+}
+#scorearea {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 2rem;
+}
+#playAgainBtn {
+  background-color: rgb(36, 48, 48);
+  color: rgb(240, 227, 227);
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid grey;
+}
+#playAgainBtn:hover {
+  cursor: pointer;
+  background-color: rgb(240, 227, 227);
+  color: rgb(36, 48, 48);
 }
 .hidden {
   display: none;
