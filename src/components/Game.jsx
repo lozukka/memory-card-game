@@ -12,10 +12,17 @@ function Game() {
   const [bestScore, setBestScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
-  const POKEMON_IDS = [1, 4, 7, 12, 25, 39, 54, 60, 104, 129, 133, 143];
+  const NUM_CARDS = 12;
 
   const loadPokemon = async () => {
-    const results = await Promise.all(POKEMON_IDS.map((id) => fetchImages(id)));
+    const randomIds = new Set();
+    while (randomIds.size < NUM_CARDS) {
+      randomIds.add(Math.floor(Math.random() * 150) + 1);
+    }
+
+    const results = await Promise.all(
+      [...randomIds].map((id) => fetchImages(id)),
+    );
     setPokemonList(results);
   };
 
